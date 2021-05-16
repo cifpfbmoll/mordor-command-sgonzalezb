@@ -1,5 +1,14 @@
 package edu.pingpong.mordor;
 
+import edu.pingpong.mordor.interfaces.Pedido;
+import edu.pingpong.mordor.interfaces.TratamientoPedido;
+import edu.pingpong.mordor.pedidos.PedidoNacional;
+import edu.pingpong.mordor.procesadores.Oficina;
+import edu.pingpong.mordor.tratamientos.TratamientoPedidoMultiple;
+
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * Hello world!
  *
@@ -11,33 +20,49 @@ public class App
 
         Oficina oficina = new Oficina();
 
-        Pedido pedido = new PedidoInternacional("Comarca", 10);
-        TratamientoPedido tratamientoInt = new TratamientoPedidoInternacional(
-                (PedidoInternacional) pedido);
+        Set<Pedido> listaPedidos = new HashSet<>();
 
-        System.out.println(oficina.printarStatus(oficina.procesa(tratamientoInt), pedido));
+        /*Pedido pedido = new PedidoInternacional("Comarca", 10);*/
 
-        pedido = new PedidoInternacional("Mordor", 10);
-        tratamientoInt = new TratamientoPedidoInternacional((PedidoInternacional) pedido);
+        Pedido pedido = new PedidoNacional("Comarca",0);
+        Pedido pedido2 = new PedidoNacional("Mordor",0);
 
-        System.out.println(oficina.printarStatus(oficina.procesa(tratamientoInt), pedido));
+        listaPedidos.add(pedido2);
+        listaPedidos.add(pedido);
+        oficina.printarStatus(true, pedido);
 
-        pedido = new PedidoPeligrosoOrden("Cima de los vientos",
-                "No urgarse en las uñas con este puñal");
-        TratamientoPedido peligroso = new TratamientoPedidoPeligroso((PedidoPeligroso) pedido);
+//        TratamientoPedido tratamientoInt = new TratamientoPedidoInternacional(
+//                (PedidoInternacional) pedido);
 
-        System.out.println(oficina.printarStatus(oficina.procesa(peligroso), pedido));
+        TratamientoPedido tratamientoInt = new TratamientoPedidoMultiple(listaPedidos);
 
-        pedido = new PedidoPeligrosoOrden("Monte del destino",
-                "No ponerselo en el dedo");
-        peligroso = new TratamientoPedidoPeligroso((PedidoPeligroso) pedido);
+//        System.out.println(oficina.printarStatus(oficina.procesa(tratamientoInt), pedido));
 
-        System.out.println(oficina.printarStatus(oficina.procesa(peligroso), pedido));
+        System.out.println(oficina.printarStatus(oficina.procesar(tratamientoInt),pedido));
+        System.out.println(oficina.printarStatus(oficina.procesar(tratamientoInt),pedido2));
 
-        /**
+//
+//        pedido = new PedidoInternacional("Mordor", 10);
+//        tratamientoInt = new TratamientoPedidoInternacional((PedidoInternacional) pedido);
+//
+//        System.out.println(oficina.printarStatus(oficina.procesa(tratamientoInt), pedido));
+//
+//        pedido = new PedidoPeligrosoOrden("Cima de los vientos",
+//                "No urgarse en las uñas con este puñal");
+//        TratamientoPedido peligroso = new TratamientoPedidoPeligroso((PedidoPeligroso) pedido);
+//
+//        System.out.println(oficina.printarStatus(oficina.procesa(peligroso), pedido));
+//
+//        pedido = new PedidoPeligrosoOrden("Monte del destino",
+//                "No ponerselo en el dedo");
+//        peligroso = new TratamientoPedidoPeligroso((PedidoPeligroso) pedido);
+//
+//        System.out.println(oficina.printarStatus(oficina.procesa(peligroso), pedido));
+
+        /*
          * Los pedidos multiples se completan en el ultimo de los casos test
          */
     }
 
     }
-}
+
