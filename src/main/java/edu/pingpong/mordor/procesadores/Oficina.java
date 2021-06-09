@@ -18,7 +18,7 @@ public class Oficina implements Procesador{
 
     /*Si el Boolean que pasamos como parámetro printará que el pedido si está Aceptado, si el parametro es False printará rechazado*/
     public String printarStatus(boolean aceptado, Pedido pedido){
-        return aceptado? pedido.destino() + "" + Status.ACEPTADO : pedido.destino() + "" + Status.RECHAZADO;
+        return aceptado? "Su pedido con destino a: "+ pedido.destino() + " ha sido: " + Status.ACEPTADO : "Su pedido con destino a: " + pedido.destino() + " ha sido: " + Status.RECHAZADO;
 
     }
 

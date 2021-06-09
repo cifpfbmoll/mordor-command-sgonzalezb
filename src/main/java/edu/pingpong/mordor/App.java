@@ -18,6 +18,9 @@ public class App
     public static void main( String[] args )
     {
 
+
+        System.out.println("\nSu pedido con multiples bultos está siendo tratado"
+                +"\n----------------------------------------\n");
         Oficina oficina = new Oficina();
 
         Set<Pedido> listaPedidos = new HashSet<>();
